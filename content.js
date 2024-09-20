@@ -7,7 +7,6 @@ function getTotalYears(experienceList) {
     const endYear = !isNaN(experience.endYear)
       ? parseInt(experience.endYear)
       : new Date().getFullYear();
-    console.log({ startYear, endYear });
     totalYears += endYear - startYear;
   });
 
@@ -41,9 +40,5 @@ function scrapeExperience() {
   return totalYears;
 }
 
-// Send total years of experience to the popup or log it
-const totalExperience = scrapeExperience();
-console.log("Total Years of Experience:", totalExperience);
-
 // Send data to the background or popup
-chrome.runtime.sendMessage({ totalExperience });
+chrome.runtime.sendMessage({ totalExperience: scrapeExperience() });
