@@ -33,7 +33,13 @@ function scrapeExperience() {
     const endYear =
       end && !end.includes("Present | actualidad") ? end.split(" ")[1] : null;
 
-    experiences.push({ startYear, endYear });
+    if (
+      !isNaN(Number(startYear)) &&
+      !isNaN(Number(endYear)) &&
+      startYear &&
+      endYear
+    )
+      experiences.push({ startYear, endYear });
   });
 
   const totalYears = getTotalYears(experiences);
